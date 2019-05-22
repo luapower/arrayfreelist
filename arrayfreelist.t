@@ -7,7 +7,7 @@
 
 setfenv(1, require'low')
 
-local arrayfreelist = memoize(function(T, size_t, context_t)
+local arrayfreelist_type = memoize(function(T, size_t, context_t)
 
 	local itemlist = arr{T = T, size_t = size_t,
 		context_t = context_t, own_elements = false}
@@ -72,8 +72,10 @@ local arrayfreelist = memoize(function(T, size_t, context_t)
 	return freelist
 end)
 
-low.arrayfreelist = function(T, size_t, context_t)
+arrayfreelist = function(T, size_t, context_t)
 	context_t = context_t or tuple()
 	size_t = size_t or int
-	return arrayfreelist(T, size_t, context_t)
+	return arrayfreelist_type(T, size_t, context_t)
 end
+
+return _M
