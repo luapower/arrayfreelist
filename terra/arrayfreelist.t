@@ -5,7 +5,7 @@
 --Element pointers are not stable between allocations, but their indices are,
 --which is why alloc() also return the element id (i.e. index).
 
-setfenv(1, require'low')
+setfenv(1, require'terra/low')
 
 local arrayfreelist_type = memoize(function(T, size_t, context_t)
 
